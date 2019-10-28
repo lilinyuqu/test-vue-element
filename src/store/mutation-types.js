@@ -1,0 +1,2 @@
+export const UPDATE_INFO='UPDATE_INFO'
+export const UPDATE_TOKEN='UPDATE_TOKEN'
