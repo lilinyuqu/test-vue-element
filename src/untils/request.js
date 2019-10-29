@@ -10,12 +10,14 @@ const service = Axios.create({
 	headers: {"Authorization":Authorization,"Content-type":contentType},
 	// headers: { 'Accept': '*/*'},
 	timeout: "",
+	closeLoading:""
 })
 service.defaults.retry = 3;
 service.defaults.retryDelay = 2000;
 
 // 请求拦截器
 service.interceptors.request.use(config => {
+		console.log(config);
 		if (!config.closeLoading) { //显示请求图标
 			window.lodingIndabce = Loading.service();
 		}
