@@ -2,7 +2,7 @@
     <div class="login">
         <div class="login-form">
             <div class="login-header">
-                <img src="../../assets/images/logo.svg" alt="" width="100" height="100">
+<!--                <img src="../../assets/images/logo.svg" alt="" width="100" height="100">-->
             </div>
             <el-form>
                 <el-input placeholder="请输入用户名" style="margin-bottom: 18px" suffix-icon="fa fa-user"
