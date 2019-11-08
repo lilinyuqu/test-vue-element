@@ -70,43 +70,18 @@
             <div class="aside">
                 <!--                menu-->
                 <div class="menu">
-                    <el-menu class="menu" @open="handleOpen" @close="handleClose"
+                    <el-menu background-color="#222d32"
+                             text-color="#fff" router class="menu" @open="handleOpen" @close="handleClose"
                              :collapse="isCollapse">
                         <el-submenu index="1">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
-                                <span slot="title">导航一</span>
+                                <span slot="title">权限管理</span>
                             </template>
-                            <el-menu-item-group>
-                                <span slot="title">分组一</span>
-                                <el-menu-item index="1-1">选项1</el-menu-item>
-                                <el-menu-item index="1-2">选项2</el-menu-item>
-                            </el-menu-item-group>
-                            <el-menu-item-group title="分组2">
-                                <el-menu-item index="1-3">选项3</el-menu-item>
-                            </el-menu-item-group>
-                            <el-submenu index="1-4">
-                                <span slot="title">选项4</span>
-                                <el-menu-item index="1-4-1">选项1</el-menu-item>
-                            </el-submenu>
-                        </el-submenu>
-                        <el-submenu index="1">
-                            <template slot="title">
-                                <i class="el-icon-location"></i>
-                                <span slot="title">导航一</span>
-                            </template>
-                            <el-menu-item-group>
-                                <span slot="title">分组一</span>
-                                <el-menu-item index="1-1">选项1</el-menu-item>
-                                <el-menu-item index="1-2">选项2</el-menu-item>
-                            </el-menu-item-group>
-                            <el-menu-item-group title="分组2">
-                                <el-menu-item index="1-3">选项3</el-menu-item>
-                            </el-menu-item-group>
-                            <el-submenu index="1-4">
-                                <span slot="title">选项4</span>
-                                <el-menu-item index="1-4-1">选项1</el-menu-item>
-                            </el-submenu>
+                            <el-menu-item index="/userGroupmanage">用户组管理</el-menu-item>
+                            <el-menu-item index="/usermanage">用户管理</el-menu-item>
+                            <el-menu-item index="/rolemanage">角色管理</el-menu-item>
+                            <el-menu-item index="/operationmanage">操作管理</el-menu-item>
                         </el-submenu>
                     </el-menu>
 
@@ -119,19 +94,32 @@
                 </div>
             </div>
             <div class="app-body">
-                11
-                <div class="mainContainer"></div>
+                <div class="mainContainer">
+                    <!--                    navbar-->
+                    <NavBar v-if="switchTabBar"></NavBar>
+                    <!--                    详情页-->
+                    <Card >
+                        <router-view></router-view>
+                    </Card>
+
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+	import NavBar from "./NavBar";
+
 	export default {
 		name: "App",
+		components: {
+			NavBar
+		},
 		data() {
 			return {
 				isCollapse: false,//菜单默认折叠
+				switchTabBar: true//默认navbar显示
 			}
 		},
 		methods: {
@@ -152,6 +140,12 @@
 					this.isCollapse = true;
 				}
 
+			},
+			handleOpen(key, keyPath) {
+				//console.log(key, keyPath);
+			},
+			handleClose(key, keyPath) {
+				//关闭菜单
 			}
 		},
 		mounted() {
@@ -202,6 +196,7 @@
                 overflow: hidden;
             }
         }
+
         .aside {
             margin-left: -230px;
         }
@@ -237,6 +232,7 @@
             background-color: #222d32;
             top: 50px;
             transition: all 0.3s ease-in-out;
+
             .menu {
                 height: calc(100vh - 100px);
                 overflow: auto;
